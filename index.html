@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markético+ | Más que un Mercado, una Experiencia Tica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --verde-oscuro: #1a5c2a;
+      --verde-medio: #2e7d3c;
+      --verde-lima: #4caf27;
+      --amarillo: #f5c518;
+      --blanco: #ffffff;
+      --fondo: #f6faf2;
+      --texto: #2d2d2d;
+      --gris: #666;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--fondo);
+      color: var(--texto);
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      background-color: var(--verde-oscuro);
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+
+    .nav-logo {
+      color: var(--blanco);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-logo span { color: var(--amarillo); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--amarillo); }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(145deg, #1a5c2a 0%, #2e7d3c 50%, #3a9e4a 100%);
+      color: var(--blanco);
+      text-align: center;
+      padding: 80px 20px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 50%, rgba(76,175,39,0.25) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 20%, rgba(245,197,24,0.15) 0%, transparent 50%);
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--amarillo);
+      color: var(--verde-oscuro);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span { color: var(--amarillo); }
+
+    .hero-slogan {
+      font-size: 18px;
+      font-weight: 600;
+      opacity: 0.9;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    .hero-lista {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 700px;
+    }
+
+    .hero-lista span {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn-wa {
+      background: #25d366;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    }
+
+    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
+
+    .btn-secundario {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .btn-secundario:hover { background: rgba(255,255,255,0.25); }
+
+    /* ===== PRODUCTOS ===== */
+    .productos {
+      padding: 70px 40px;
+      text-align: center;
+      background: var(--blanco);
+    }
+
+    .seccion-label {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--verde-lima);
+      margin-bottom: 8px;
+    }
+
+    .seccion-titulo {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 900;
+      color: var(--verde-oscuro);
+      margin-bottom: 10px;
+    }
+
+    .seccion-sub {
+      color: var(--gris);
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 18px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .prod-card {
+      background: var(--fondo);
+      border-radius: 18px;
+      padding: 28px 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+      border: 2px solid transparent;
+    }
+
+    .prod-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(26,92,42,0.12);
+      border-color: var(--verde-lima);
+    }
+
+    .prod-emoji { font-size: 40px; display: block; margin-bottom: 10px; }
+
+    .prod-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--verde-oscuro);
+    }
+
+    /* ===== POR QUÉ ELEGIRNOS ===== */
+    .beneficios {
+      background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-medio));
+      color: white;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .beneficios .seccion-label { color: var(--amarillo); }
+    .beneficios .seccion-titulo { color: white; }
+    .beneficios .seccion-sub { color: rgba(255,255,255,0.75); }
+
+    .grid-beneficios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .bene-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 18px;
+      padding: 30px 20px;
+      transition: background 0.2s;
+    }
+
+    .bene-card:hover { background: rgba(255,255,255,0.18); }
+
+    .bene-icon { font-size: 38px; margin-bottom: 12px; display: block; }
+
+    .bene-card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--amarillo);
+    }
+
+    .bene-card p { font-size: 14px; opacity: 0.85; line-height: 1.5; }
+
+    /* ===== HORARIO ===== */
+    .horario {
+      background: var(--blanco);
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .horario-cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    .horario-card {
+      background: var(--fondo);
+      border-radius: 18px;
+      padding: 30px 40px;
+      border-top: 5px solid var(--verde-lima);
+      min-width: 200px;
+    }
+
+    .horario-card .dia {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--verde-lima);
+      margin-bottom: 8px;
+    }
+
+    .horario-card .hora {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--verde-oscuro);
+    }
+
+    /* ===== UBICACIÓN ===== */
+    .ubicacion {
+      background: var(--fondo);
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .ubicacion-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--blanco);
+      border-radius: 18px;
+      padding: 24px 36px;
+      margin-top: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .ubicacion-box .pin { font-size: 40px; }
+
+    .ubicacion-box p {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--verde-oscuro);
+      line-height: 1.6;
+    }
+
+    .ubicacion-box span {
+      font-size: 14px;
+      color: var(--gris);
+      font-weight: 600;
+    }
+
+    /* ===== CONTACTO ===== */
+    .contacto {
+      background: var(--verde-oscuro);
+      color: white;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .contacto .seccion-titulo { color: white; }
+    .contacto .seccion-sub { color: rgba(255,255,255,0.7); }
+
+    .contacto-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn-contacto {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    .btn-contacto:hover { transform: translateY(-2px); }
+
+    .btn-wa-grande {
+      background: #25d366;
+      color: white;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366);
+      color: white;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    footer span { color: var(--verde-lima); }
+
+    /* ===== BOTÓN FLOTANTE WA ===== */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      z-index: 200;
+      transition: transform 0.2s;
+      animation: pulse 2s infinite;
+    }
+
+    .wa-float:hover { transform: scale(1.1); }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 4px 35px rgba(37,211,102,0.8); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      nav { padding: 12px 20px; }
+      nav ul { gap: 14px; }
+      nav ul a { font-size: 13px; }
+      .hero { padding: 60px 20px 70px; }
+      .productos, .beneficios, .horario, .ubicacion, .contacto { padding: 50px 20px; }
+      .ubicacion-box { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">Markético<span>+</span></div>
+    <ul>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🇨🇷 Invu Los Ángeles, Cartago</div>
+      <h1>Markético<span>+</span></h1>
+      <p class="hero-slogan">"Más que un Mercado, una Experiencia Tica"</p>
+      <div class="hero-lista">
+        <span>🥦 Verduras</span>
+        <span>🍓 Frutas</span>
+        <span>🥤 Batidos</span>
+        <span>🥚 Huevos</span>
+        <span>🧀 Lácteos</span>
+        <span>🛒 Abarrotes</span>
+        <span>🌿 Semillas</span>
+        <span>🍦 Helados</span>
+        <span>🚴 Servicio Express</span>
+      </div>
+      <div class="hero-btns">
+        <a href="https://wa.me/50670479234" target="_blank" class="btn-wa">
+          📲 Pedir por WhatsApp
+        </a>
+        <a href="#productos" class="btn-secundario">Ver productos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="productos" id="productos">
+    <p class="seccion-label">Lo que tenemos</p>
+    <h2 class="seccion-titulo">Todo para tu semana en un solo lugar</h2>
+    <p class="seccion-sub">Calidad, frescura y buenos precios en cada pasillo.</p>
+    <div class="grid-productos">
+      <div class="prod-card"><span class="prod-emoji">🥦</span><h3>Verdulería</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🍓</span><h3>Frutería</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🥤</span><h3>Batidos</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🥗</span><h3>Ensaladas de Fruta</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🍦</span><h3>Helados</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🥚</span><h3>Huevos</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🧀</span><h3>Lácteos</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🛒</span><h3>Abarrotes</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🌿</span><h3>Semillas & Naturales</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🥩</span><h3>Carnes</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🥫</span><h3>Especies</h3></div>
+      <div class="prod-card"><span class="prod-emoji">🍫</span><h3>Snacks</h3></div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="beneficios" id="beneficios">
+    <p class="seccion-label">¿Por qué elegirnos?</p>
+    <h2 class="seccion-titulo">Calidad tica, precio justo</h2>
+    <p class="seccion-sub" style="margin-bottom:40px">Apoyamos lo local y queremos lo mejor para tu familia.</p>
+    <div class="grid-beneficios">
+      <div class="bene-card">
+        <span class="bene-icon">🌱</span>
+        <h3>Productos Frescos</h3>
+        <p>Frutas y verduras frescas todos los días, seleccionadas con cuidado.</p>
+      </div>
+      <div class="bene-card">
+        <span class="bene-icon">💰</span>
+        <h3>Precios Accesibles</h3>
+        <p>Calidad sin pagar de más. Aquí tu plata rinde más.</p>
+      </div>
+      <div class="bene-card">
+        <span class="bene-icon">🚴</span>
+        <h3>Servicio Express</h3>
+        <p>Pedí por WhatsApp y te lo llevamos rápido a tu casa.</p>
+      </div>
+      <div class="bene-card">
+        <span class="bene-icon">🏪</span>
+        <h3>Todo en un lugar</h3>
+        <p>Del batido a los abarrotes — no necesitás ir a otro lado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIO -->
+  <section class="horario" id="horario">
+    <p class="seccion-label">Horario</p>
+    <h2 class="seccion-titulo">Siempre listos para atenderte</h2>
+    <div class="horario-cards">
+      <div class="horario-card">
+        <p class="dia">📅 Lunes – Sábado</p>
+        <p class="hora">8:00 am – 6:00 pm</p>
+      </div>
+      <div class="horario-card">
+        <p class="dia">☀️ Domingos</p>
+        <p class="hora">9:00 am – 3:00 pm</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section class="ubicacion" id="ubicacion">
+    <p class="seccion-label">Dónde estamos</p>
+    <h2 class="seccion-titulo">Fácil de encontrar</h2>
+    <div style="display:flex; justify-content:center;">
+      <div class="ubicacion-box">
+        <span class="pin">📍</span>
+        <div>
+          <p>500 metros Noreste del Walmart de Oreamuno</p>
+          <span>Sobre carretera principal · Invu Los Ángeles, Cartago</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <p class="seccion-label" style="color:var(--amarillo)">Contacto</p>
+    <h2 class="seccion-titulo">Hablemos</h2>
+    <p class="seccion-sub">Pedidos, consultas o simplemente saludarnos 👋</p>
+    <div class="contacto-btns">
+      <a href="https://wa.me/50670479234" target="_blank" class="btn-contacto btn-wa-grande">
+        📲 7047-9234 — WhatsApp
+      </a>
+      <a href="https://www.instagram.com/marketico_cr" target="_blank" class="btn-contacto btn-ig">
+        📸 @marketico_cr
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Markético+</span> · Más que un Mercado, una Experiencia Tica 🇨🇷</p>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE -->
+  <a href="https://wa.me/50670479234" target="_blank" class="wa-float" title="Contactar por WhatsApp">
+    📲
+  </a>
+
+</body>
+</html>
